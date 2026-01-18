@@ -1,10 +1,12 @@
 
 import Foundation
 import SwiftUI
-import CleverAdsSolutions
 import Combine
-
 // import AppTrackingTransparency
+
+#if canImport(CleverAdsSolutions)
+import CleverAdsSolutions
+
 
 public class AdsManager: NSObject, ObservableObject {
     
@@ -151,3 +153,4 @@ extension AdsManager: WebViewControllerDelegate {
         print("✅ Custom Ad Closed")
     }
 }
+#endif
