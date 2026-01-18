@@ -110,7 +110,7 @@ public class AdsManager: NSObject, ObservableObject {
 }
 
 // MARK: - CAS Delegate
-extension AdsManager: CASScreenContentDelegate {
+@MainActor extension AdsManager: CASScreenContentDelegate {
     
     public func screenAdDidLoadContent(_ ad: CASScreenContent) {
         checkAdStatus()
@@ -144,7 +144,7 @@ extension AdsManager: CASScreenContentDelegate {
 }
 
 // MARK: - Custom Ad Delegate
-extension AdsManager: WebViewControllerDelegate {
+@MainActor extension AdsManager: WebViewControllerDelegate {
     public func webViewControllerDidLoad(_ controller: WebViewController) {
         print("✅ Custom Ad Loaded")
     }
