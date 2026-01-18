@@ -7,11 +7,11 @@ import Combine
 #if canImport(CleverAdsSolutions)
 import CleverAdsSolutions
 
-
+@MainActor
 public class AdsManager: NSObject, ObservableObject {
     
-    public static let shared = AdsManager()
-    public static var casID: String = "123456789"
+    @MainActor public static let shared = AdsManager()
+    @MainActor public static var casID: String = "123456789"
     
     // Internal properites for logic
     private var manager: CASMediationManager? 
