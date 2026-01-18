@@ -10,8 +10,6 @@ public extension UIApplication {
             .first?.windows
             .filter { $0.isKeyWindow }
             .first?.rootViewController
-            .compactMap { $0 }
-            .first
     }
 }
 
