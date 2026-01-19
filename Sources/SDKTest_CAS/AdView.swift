@@ -1,6 +1,7 @@
 
 import SwiftUI
 import WebKit
+import UIKit
 
 @MainActor
 public struct AdView: View {

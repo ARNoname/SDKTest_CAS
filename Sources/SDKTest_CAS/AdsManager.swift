@@ -22,10 +22,7 @@ public class AdsManager: NSObject, ObservableObject {
     @Published public var casID: String  = ""
     
     private var onRewardCompletion: ((Bool) -> Void)?
-    
-    // For Custom Ad
-    private var onCustomAdDismiss: (() -> Void)?
-    
+        
     public override init() {
         super.init()
     }
@@ -74,8 +71,11 @@ public class AdsManager: NSObject, ObservableObject {
     public func showRewarded(from viewController: UIViewController, completion: @escaping (Bool) -> Void) {
         if let rewarded = rewarded, rewarded.isAdLoaded {
             self.onRewardCompletion = completion
-            rewarded.present(from: viewController) { _ in
-                // User earned reward
+
+            rewarded.present(from: viewController) { [weak self] _ in
+                guard let self else { return }
+                self.onRewardCompletion?(true)
+                self.onRewardCompletion = nil
             }
         } else {
             completion(false)
