@@ -12,27 +12,27 @@ import CleverAdsSolutions
 public class AdsManager: NSObject, ObservableObject {
     
     @MainActor public static let shared = AdsManager()
-    public var casID: String
-    
-    // Internal properites for logic
+
     private var manager: CASMediationManager? 
     private var interstitial: CASInterstitial?
     private var rewarded: CASRewarded?
 
     @Published public var isInterstitialReady: Bool = false
     @Published public var isRewardedReady: Bool = false
+    @Published public var casID: String  = ""
     
     private var onRewardCompletion: ((Bool) -> Void)?
     
     // For Custom Ad
     private var onCustomAdDismiss: (() -> Void)?
     
-    public override init(casID: String) {
+    public override init() {
         super.init()
-        AdsManager.shared.casID = casID
     }
     
-    public func configure() {
+    public func configure(casID: String) {
+        self.casID = casID
+        
         CAS.settings.debugMode = true
         
         // Initialize SDK
@@ -47,16 +47,16 @@ public class AdsManager: NSObject, ObservableObject {
                     print("🟢 CAS Init Success")
                 }
             }
-            .create(withCasId: AdsManager.shared.casID)
+            .create(withCasId: self.casID)
         
         // Initialize Interstitial
-        let interstitial = CASInterstitial(casID: AdsManager.shared.casID)
+        let interstitial = CASInterstitial(casID: self.casID)
         interstitial.delegate = self
         interstitial.loadAd()
         self.interstitial = interstitial
         
         // Initialize Rewarded
-        let rewarded = CASRewarded(casID: AdsManager.shared.casID)
+        let rewarded = CASRewarded(casID: self.casID)
         rewarded.delegate = self
         rewarded.loadAd()
         self.rewarded = rewarded
