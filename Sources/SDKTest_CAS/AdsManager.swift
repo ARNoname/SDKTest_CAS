@@ -2,6 +2,7 @@
 import Foundation
 import SwiftUI
 import Combine
+
 // import AppTrackingTransparency
 
 #if canImport(CleverAdsSolutions)
@@ -110,7 +111,7 @@ public class AdsManager: NSObject, ObservableObject {
 }
 
 // MARK: - CAS Delegate
-@MainActor extension AdsManager: CASScreenContentDelegate {
+ extension AdsManager: CASScreenContentDelegate {
     
     public func screenAdDidLoadContent(_ ad: CASScreenContent) {
         checkAdStatus()
@@ -144,7 +145,7 @@ public class AdsManager: NSObject, ObservableObject {
 }
 
 // MARK: - Custom Ad Delegate
-@MainActor extension AdsManager: WebViewControllerDelegate {
+ extension AdsManager: WebViewControllerDelegate {
     public func webViewControllerDidLoad(_ controller: WebViewController) {
         print("✅ Custom Ad Loaded")
     }
