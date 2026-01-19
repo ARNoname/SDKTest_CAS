@@ -35,7 +35,6 @@ public struct WebViewWrapper: UIViewRepresentable {
              parent.onLoad()
         }
         
-        // Force navigation in the same view (optional, based on your previous code)
         public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
             return .allow
         }

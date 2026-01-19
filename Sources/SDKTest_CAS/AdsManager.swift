@@ -12,7 +12,7 @@ import CleverAdsSolutions
 public class AdsManager: NSObject, ObservableObject {
     
     @MainActor public static let shared = AdsManager()
-    @MainActor public static var casID: String = "123456789"
+    public var casID: String
     
     // Internal properites for logic
     private var manager: CASMediationManager? 
@@ -31,7 +31,9 @@ public class AdsManager: NSObject, ObservableObject {
         super.init()
     }
     
-    public func configure() {
+    public func configure(casID: String) {
+        AdsManager.shared.casID = casID
+        
         CAS.settings.debugMode = true
         
         // Initialize SDK

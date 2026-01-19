@@ -1,10 +1,3 @@
-//
-//  AppProduct.swift
-//  SDKTest_CAS
-//
-//  Created by Aleksander on 18.01.2026.
-//
-
 
 import SwiftUI
 
