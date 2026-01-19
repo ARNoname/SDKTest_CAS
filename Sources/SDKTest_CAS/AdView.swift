@@ -164,7 +164,6 @@ public struct AdView: View {
             .frame(height: 4)
             .background(Color.white.opacity(0.5))
             .clipShape(.rect(cornerRadius: 20))
-            .animation(.linear(duration: 0.1), value: progress)
     }
     
     //MARK: - Start timer
@@ -173,7 +172,9 @@ public struct AdView: View {
         timer = Timer.scheduledTimer(withTimeInterval: step, repeats: true) { _ in
             Task { @MainActor in
                 if progress < 1.0 {
-                    progress += step / adDuration
+                    withAnimation(.linear(duration: 0.1)) {
+                        progress += step / adDuration
+                    }
                 } else {
                     timer?.invalidate()
                     withAnimation(.linear(duration: 0.1)) {
