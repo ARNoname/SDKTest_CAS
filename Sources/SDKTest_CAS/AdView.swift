@@ -172,7 +172,7 @@ public struct AdView: View {
         timer = Timer.scheduledTimer(withTimeInterval: step, repeats: true) { _ in
             Task { @MainActor in
                 if progress < 1.0 {
-                    withAnimation(.linear(duration: 0.5)) {
+                    withAnimation(.linear(duration: 0.1)) {
                         progress += step / adDuration
                     }
                 } else {
