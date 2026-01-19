@@ -15,12 +15,12 @@ let package = Package(
             targets: ["SDKTest_CAS"]
         ),
     ],
-//    dependencies: [
-//        // We declare the dependency so the SDK code can compile (it needs to 'import CleverAdsSolutions').
-//        // If the host app also uses SPM, SPM will deduplicate this.
-//        // If the host app uses CocoaPods, you might have issues, but without this line, THIS package won't build.
-//        .package(url: "https://github.com/cleveradssolutions/CAS-iOS.git", .upToNextMajor(from: "4.5.5"))
-//    ],
+    dependencies: [
+        // We declare the dependency so the SDK code can compile (it needs to 'import CleverAdsSolutions').
+        // If the host app also uses SPM, SPM will deduplicate this.
+        // If the host app uses CocoaPods, you might have issues, but without this line, THIS package won't build.
+        .package(url: "https://github.com/cleveradssolutions/CAS-iOS.git", .upToNextMajor(from: "4.5.5"))
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.

@@ -175,14 +175,20 @@ public struct AdView: View {
     private func startTimer() {
         let step = 0.1
         timer = Timer.scheduledTimer(withTimeInterval: step, repeats: true) { time in
-            if progress < 1.0 {
-                progress += step / adDuration
-            } else {
-                time.invalidate()
-                withAnimation(.linear(duration: 0.1)) {
-                    isCloseButtonVisible = true
+            
+                if progress < 1.0 {
+                    DispatchQueue.main.async {
+                        progress += step / adDuration
+                    }
+                } else {
+                    time.invalidate()
+                    withAnimation(.linear(duration: 0.1)) {
+                        DispatchQueue.main.async {
+                            isCloseButtonVisible = true
+                        }
+                    }
                 }
-            }
+            
         }
     }
 }
