@@ -47,16 +47,16 @@ public class AdsManager: NSObject, ObservableObject {
                     print("🟢 CAS Init Success")
                 }
             }
-            .create(withCasId: AdsManager.casID)
+            .create(withCasId: AdsManager.shared.casID)
         
         // Initialize Interstitial
-        let interstitial = CASInterstitial(casID: AdsManager.casID)
+        let interstitial = CASInterstitial(casID: AdsManager.shared.casID)
         interstitial.delegate = self
         interstitial.loadAd()
         self.interstitial = interstitial
         
         // Initialize Rewarded
-        let rewarded = CASRewarded(casID: AdsManager.casID)
+        let rewarded = CASRewarded(casID: AdsManager.shared.casID)
         rewarded.delegate = self
         rewarded.loadAd()
         self.rewarded = rewarded
