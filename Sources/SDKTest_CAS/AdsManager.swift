@@ -27,13 +27,12 @@ public class AdsManager: NSObject, ObservableObject {
     // For Custom Ad
     private var onCustomAdDismiss: (() -> Void)?
     
-    public override init() {
+    public override init(casID: String) {
         super.init()
+        AdsManager.shared.casID = casID
     }
     
-    public func configure(casID: String) {
-        AdsManager.shared.casID = casID
-        
+    public func configure() {
         CAS.settings.debugMode = true
         
         // Initialize SDK
