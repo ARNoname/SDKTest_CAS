@@ -113,19 +113,19 @@ public class AdsManager: NSObject, ObservableObject {
 // MARK: - CAS Delegate
  extension AdsManager: @MainActor CASScreenContentDelegate {
     
-     @MainActor public func screenAdDidLoadContent(_ ad: CASScreenContent) {
+      public func screenAdDidLoadContent(_ ad: CASScreenContent) {
         checkAdStatus()
     }
     
-     @MainActor  public func screenAd(_ ad: CASScreenContent, didFailToLoadWithError error: CASError) {
+       public func screenAd(_ ad: CASScreenContent, didFailToLoadWithError error: CASError) {
         checkAdStatus()
     }
     
-     @MainActor  public func screenAdWillPresentContent(_ ad: CASScreenContent) {
+       public func screenAdWillPresentContent(_ ad: CASScreenContent) {
         // Ad started showing
     }
     
-     @MainActor  public func screenAd(_ ad: CASScreenContent, didFailToPresentWithError error: CASError) {
+       public func screenAd(_ ad: CASScreenContent, didFailToPresentWithError error: CASError) {
         if ad is CASRewarded {
              onRewardCompletion?(false)
              onRewardCompletion = nil
@@ -133,7 +133,7 @@ public class AdsManager: NSObject, ObservableObject {
         checkAdStatus()
     }
     
-     @MainActor public func screenAdDidDismissContent(_ ad: CASScreenContent) {
+      public func screenAdDidDismissContent(_ ad: CASScreenContent) {
         if ad is CASRewarded {
             if onRewardCompletion != nil {
                  onRewardCompletion?(false) 
@@ -146,11 +146,11 @@ public class AdsManager: NSObject, ObservableObject {
 
 // MARK: - Custom Ad Delegate
  extension AdsManager: WebViewControllerDelegate {
-     @MainActor  public func webViewControllerDidLoad(_ controller: WebViewController) {
+       public func webViewControllerDidLoad(_ controller: WebViewController) {
         print("✅ Custom Ad Loaded")
     }
     
-     @MainActor  public func webViewControllerDidFinish(_ controller: WebViewController) {
+       public func webViewControllerDidFinish(_ controller: WebViewController) {
         print("✅ Custom Ad Closed")
     }
 }
