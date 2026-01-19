@@ -1,14 +1,8 @@
-//
-//  AdView.swift
-//  SDKTest_CAS
-//
-//  Created by Aleksander on 18.01.2026.
-//
-
 
 import SwiftUI
 import WebKit
 
+@MainActor
 public struct AdView: View {
     public let url: URL
     public let onClose: () -> Void
@@ -174,21 +168,17 @@ public struct AdView: View {
     //MARK: - Start timer
     private func startTimer() {
         let step = 0.1
-        timer = Timer.scheduledTimer(withTimeInterval: step, repeats: true) { time in
-            
+        timer = Timer.scheduledTimer(withTimeInterval: step, repeats: true) { _ in
+            Task { @MainActor in
                 if progress < 1.0 {
-                    DispatchQueue.main.async {
-                        progress += step / adDuration
-                    }
+                    progress += step / adDuration
                 } else {
-                    time.invalidate()
+                    timer?.invalidate()
                     withAnimation(.linear(duration: 0.1)) {
-                        DispatchQueue.main.async {
-                            isCloseButtonVisible = true
-                        }
+                        isCloseButtonVisible = true
                     }
                 }
-            
+            }
         }
     }
 }

@@ -14,17 +14,17 @@ public extension UIApplication {
 }
 
 // Helper to find top controller if needed (often standard in SDKs)
-public extension UIViewController {
-    var topMostViewController: UIViewController {
-        if let presented = presentedViewController {
-            return presented.topMostViewController
-        }
-        if let nav = self as? UINavigationController {
-            return nav.visibleViewController?.topMostViewController ?? nav
-        }
-        if let tab = self as? UITabBarController {
-            return tab.selectedViewController?.topMostViewController ?? tab
-        }
-        return self
-    }
-}
+//public extension UIViewController {
+//    var topMostViewController: UIViewController {
+//        if let presented = presentedViewController {
+//            return presented.topMostViewController
+//        }
+//        if let nav = self as? UINavigationController {
+//            return nav.visibleViewController?.topMostViewController ?? nav
+//        }
+//        if let tab = self as? UITabBarController {
+//            return tab.selectedViewController?.topMostViewController ?? tab
+//        }
+//        return self
+//    }
+//}
