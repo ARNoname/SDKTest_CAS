@@ -5,7 +5,7 @@ import Combine
 
 // import AppTrackingTransparency
 
-//#if canImport(CleverAdsSolutions)
+#if canImport(CleverAdsSolutions)
 import CleverAdsSolutions
 
 @MainActor
@@ -154,4 +154,4 @@ public class AdsManager: NSObject, ObservableObject {
         print("✅ Custom Ad Closed")
     }
 }
-//#endif
+#endif
