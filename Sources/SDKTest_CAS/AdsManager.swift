@@ -33,12 +33,12 @@ public class AdsManager: NSObject, ObservableObject {
     public func configure(casID: String) {
         print("Default: \(self.casID)")
         self.casID = casID
+        print("Init: \(self.casID)")
         
         CAS.settings.debugMode = true
         
         // Initialize SDK
         self.manager = CAS.buildManager()
-        print("Init: \(self.casID)")
 #if DEBUG
             .withTestAdMode(true)
 #endif
