@@ -30,16 +30,16 @@ public class AdsManager: NSObject, ObservableObject {
         super.init()
     }
     
-    public func configure(casID: String) {
+    public func configure(casID: String, debugMode: Bool = false) {
         self.casID = casID
         print("Init: \(self.casID)")
         
-        CAS.settings.debugMode = false
+        CAS.settings.debugMode = debugMode
         
         // Initialize SDK
         self.manager = CAS.buildManager()
 #if DEBUG
-            .withTestAdMode(false)
+            .withTestAdMode(debugMode)
 #endif
             .withCompletionHandler { config in
                 if let error = config.error {
