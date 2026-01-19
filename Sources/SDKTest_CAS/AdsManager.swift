@@ -31,16 +31,15 @@ public class AdsManager: NSObject, ObservableObject {
     }
     
     public func configure(casID: String) {
-        print("Default: \(self.casID)")
         self.casID = casID
         print("Init: \(self.casID)")
         
-        CAS.settings.debugMode = true
+        CAS.settings.debugMode = false
         
         // Initialize SDK
         self.manager = CAS.buildManager()
 #if DEBUG
-            .withTestAdMode(true)
+            .withTestAdMode(false)
 #endif
             .withCompletionHandler { config in
                 if let error = config.error {
@@ -50,21 +49,18 @@ public class AdsManager: NSObject, ObservableObject {
                 }
             }
             .create(withCasId: self.casID)
-        print("Creat: \(self.casID)")
         
         // Initialize Interstitial
         let interstitial = CASInterstitial(casID: self.casID)
         interstitial.delegate = self
         interstitial.loadAd()
         self.interstitial = interstitial
-        print("interstitial: \(self.casID)")
         
         // Initialize Rewarded
         let rewarded = CASRewarded(casID: self.casID)
         rewarded.delegate = self
         rewarded.loadAd()
         self.rewarded = rewarded
-        print("rewarded: \(self.casID)")
     }
     
     public func showInterstitial(from viewController: UIViewController) {
