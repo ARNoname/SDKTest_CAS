@@ -2,11 +2,13 @@
 import UIKit
 import SwiftUI
 
+@MainActor
 public protocol WebViewControllerDelegate: AnyObject {
     func webViewControllerDidLoad(_ controller: WebViewController)
     func webViewControllerDidFinish(_ controller: WebViewController)
 }
 
+@MainActor
 public class WebViewController: UIViewController {
     
     public weak var delegate: WebViewControllerDelegate?
