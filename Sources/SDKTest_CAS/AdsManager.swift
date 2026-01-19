@@ -111,7 +111,7 @@ public class AdsManager: NSObject, ObservableObject {
 }
 
 // MARK: - CAS Delegate
- extension AdsManager: CASScreenContentDelegate {
+ extension AdsManager: @MainActor CASScreenContentDelegate {
     
      @MainActor public func screenAdDidLoadContent(_ ad: CASScreenContent) {
         checkAdStatus()
