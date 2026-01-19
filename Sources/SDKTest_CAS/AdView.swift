@@ -164,6 +164,7 @@ public struct AdView: View {
             .frame(height: 4)
             .background(Color.white.opacity(0.5))
             .clipShape(.rect(cornerRadius: 20))
+            .animation(.linear(duration: 0.1), value: progress)
     }
     
     //MARK: - Start timer
